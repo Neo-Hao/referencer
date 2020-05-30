@@ -85,9 +85,21 @@ function getBookmarkObjs(links) {
   // link the two objs: bookmarkOjb and linkObjs
   for (var i = 0; i < links.length; i++) {
     link = links[i];
+
+    // error case
+    if (DocumentApp.getActiveDocument().getBookmark(link.bookmarkId) == null) {
+      handleErr('link-orphan', link.paraTextObj, link.start, link.end);
+      return 'error';
+    }
+
     for (var j = 0; j < bookmarkObjs.length; j++) {
       var bookmarkObj = bookmarkObjs[j];
       if (link.bookmarkId === bookmarkObj.bookmarkId) {
+        // error case
+        if (link.end == null || link.end - link.start < 3) {
+          handleErr('link-short', link.paraTextObj, link.start, link.end);
+          return 'error';
+        }
         // map
         var key = link.paraTextObj.getText();
         bookmarkObj.linkMap.set(key, link);
@@ -97,11 +109,24 @@ function getBookmarkObjs(links) {
   }
 
   // filter out the bookmarks that have no referencing in the doc
+  var bookmarkOrphan;
   bookmarkObjs = bookmarkObjs.filter(function getNonEmpty(bookmarkOjb) {
     if (bookmarkOjb.linkMap.size > 0) { return true; }
-    else { return false; }
+    else if (bookmarkOjb.linkMap.size == 0 && (bookmarkObj.type == 'figure'  || bookmarkObj.type == 'table')) {
+      // error case
+      bookmarkOrphan = bookmarkOjb;
+      return false;
+    }
+    else {
+      return false;
+    }
   });
 
+  // error case
+  if (bookmarkOrphan != null) {
+    handleErr('bookmark-orphan', bookmarkOrphan.paragraph.editAsText(), 0, 0);
+    return 'error';
+  }
 
   // sort the obj to return
   bookmarkObjs.sort(function(a, b) {
@@ -244,9 +269,11 @@ function getObjType(paragraphOjb) {
  * @returns: par - Paragraph
  */
 function getBookmarkParagraph(bookmark) {
-  var par = bookmark.getPosition().getElement().asParagraph();
+  var element = bookmark.getPosition().getElement();
 
-  return par;
+  if (element.getType() === DocumentApp.ElementType.TEXT) return element.getParent().asParagraph();
+
+  return element;
 }
 
 

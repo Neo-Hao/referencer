@@ -28,8 +28,8 @@ function onOpen(e) {
     .createAddonMenu()
     .addItem('Auto-number headings', 'updateHeadings')
     .addSeparator()
-    .addItem('Update References', 'updateReference')
-    .addItem('Remove References', 'removeReference')
+    .addItem('Update references', 'updateReference')
+    .addItem('Remove references', 'removeReference')
     .addSeparator()
     .addItem('Help', 'getHelp')
     .addToUi();
@@ -49,6 +49,12 @@ function updateReference() {
   var links = getAllBookmarkLinks(DocumentApp.getActiveDocument().getBody(), 1);
   // get bookmark objs
   var bookmarkObjs = getBookmarkObjs(links);
+  Logger.log(bookmarkObjs);
+
+  // check error
+  if (bookmarkObjs === 'error') {
+    return 'error';
+  }
 
   // get paragraph map
   var paragraphMap = getParagraphMap(links);
@@ -97,6 +103,11 @@ function removeReference() {
   // get bookmark objs
   var bookmarkObjs = getBookmarkObjs(links);
 
+  // check error
+  if (bookmarkObjs === 'error') {
+    return 'error';
+  }
+
   for (var i = 0; i < bookmarkObjs.length; i++) {
     var bookmarkObj = bookmarkObjs[i];
 
@@ -122,10 +133,16 @@ function removeReference() {
  * @returns
  */
 function updateHeadings() {
+
   // get all link objs
   var links = getAllBookmarkLinks(DocumentApp.getActiveDocument().getBody(), 1);
   // get bookmark objs
   var bookmarkObjs = getBookmarkObjs(links);
+
+  // check error
+  if (bookmarkObjs === 'error') {
+    return 'error';
+  }
 
   // get paragraph map
   var paragraphMap = getParagraphMap(links);

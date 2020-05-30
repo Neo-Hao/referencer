@@ -13,6 +13,10 @@ function updateText(textObj, newText, start, end) {
   textObj.insertText(start, newText);
 }
 
+function updateText2(textObj, newText) {
+  textObj.setText(newText);
+}
+
 
 /**
  * update the text of textOjb to newText, and add url to the newText
@@ -26,7 +30,12 @@ function updateText(textObj, newText, start, end) {
  * @returns
  */
 function updateLinkText(textObj, newText, start, end, url) {
+//  Logger.log('start: ' + start);
+//  Logger.log('end: ' + end);
+
   textObj.deleteText(start, end)
   textObj.insertText(start, newText);
   textObj.setLinkUrl(start, start + newText.length - 1, url);
+
+  return start + newText.length - 1 - end;
 }
