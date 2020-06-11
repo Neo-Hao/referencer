@@ -17,6 +17,6 @@ function updateOtherReference(bookmarkObj, bookmarkObjs, paragraphMap, bookmarkM
   // update bookmark link (both text and link)
   var adjustment = 0;
   for (var [parKey, linkObj] of bookmarkObj.linkMap.entries()) {
-    linkObj.paraTextObj.setLinkUrl(l.start, l.end, url);
+    linkObj.paraTextObj.setLinkUrl(linkObj.start, linkObj.end, url);
   }
 }
