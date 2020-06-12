@@ -10,13 +10,14 @@
  * @returns
  */
 function updateOtherReference(bookmarkObj, bookmarkObjs, paragraphMap, bookmarkMap) {
-  // add new bookmark and get its new url
-  bookmarkObj.bookmark = setBookmark(bookmarkObj.paragraph);
-  var url = '#bookmark=' + bookmarkObj.bookmark.getId();
+  if (bookmarkObj.paragraph != null) {
+    // add new bookmark and get its new url
+    bookmarkObj.bookmark = setBookmark(bookmarkObj.paragraph);
+    var url = '#bookmark=' + bookmarkObj.bookmark.getId();
 
-  // update bookmark link (both text and link)
-  var adjustment = 0;
-  for (var [parKey, linkObj] of bookmarkObj.linkMap.entries()) {
-    linkObj.paraTextObj.setLinkUrl(l.start, l.end, url);
+    // update bookmark link (both text and link)
+    for (var [parKey, linkObj] of bookmarkObj.linkMap.entries()) {
+      linkObj.paraTextObj.setLinkUrl(linkObj.start, linkObj.end, url);
+    }
   }
 }

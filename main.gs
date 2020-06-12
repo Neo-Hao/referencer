@@ -83,7 +83,7 @@ function updateReference() {
       tableNumber++;
       updateTableReference(bookmarkObj, tableNumber, bookmarkObjs, paragraphMap, bookmarkMap);
     } else {
-      updateOtherReference();
+      updateOtherReference(bookmarkObj, bookmarkObjs, paragraphMap, bookmarkMap);
     }
   }
 }
