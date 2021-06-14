@@ -11,7 +11,7 @@ Follow two simple steps to auto-number your section titles:
 1. Format your section titles as headings.
 2. Run "Auto-number headings" from the menu of Referencer.
 
-Heading is a built-in style for titles in Google Docs. To enable auto-numbering of section titles, you need to firstly style them as headings. There are four levels of headings supported by Google Docs. If you need help with using headings in Google Docs, please visit [Docs Editor Help](https://support.google.com/docs/answer/116338?hl=en&co=GENIE.Platform=Desktop).
+Heading is a built-in style for titles in Google Docs. To enable auto-numbering of section titles, you need to firstly style them as headings. There are six levels of headings supported by Google Docs. If you need help with using headings in Google Docs, please visit [Docs Editor Help](https://support.google.com/docs/answer/116338?hl=en&co=GENIE.Platform=Desktop).
 
 ## Update references
 
