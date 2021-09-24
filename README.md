@@ -2,7 +2,7 @@
 
 <img src="/images/banner.jpg" width="220px">
 
-Referencer allows you to cross-reference figures, tables, and section titles using built-in Bookmarks in Google Docs. When the document is changed, all references can be synchronized and auto-numbered.
+Referencer is an open-sourced software that allows you to cross-reference figures, tables, and section titles using built-in Bookmarks in Google Docs. When the document is changed, all references can be synchronized and auto-numbered.
 
 ## Auto-number your section titles
 
