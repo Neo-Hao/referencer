@@ -4,6 +4,8 @@
 
 Referencer is an open-sourced software that allows you to cross-reference figures, tables, and section titles using built-in Bookmarks in Google Docs. When the document is changed, all references can be synchronized and auto-numbered.
 
+Contributors: Qiang Hao (@Neo-Hao); Kai Hicks (@KaiArakawa); Jack Wilson
+
 ## Auto-number your section titles
 
 Follow two simple steps to auto-number your section titles:
