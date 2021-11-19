@@ -12,7 +12,9 @@ const heading1 = DocumentApp.ParagraphHeading.HEADING1;
 const heading2 = DocumentApp.ParagraphHeading.HEADING2;
 const heading3 = DocumentApp.ParagraphHeading.HEADING3;
 const heading4 = DocumentApp.ParagraphHeading.HEADING4;
-const headingTypes = new Set([heading1, heading2, heading3, heading4]);
+const heading5 = DocumentApp.ParagraphHeading.HEADING5;
+const heading6 = DocumentApp.ParagraphHeading.HEADING6;
+const headingTypes = new Set([heading1, heading2, heading3, heading4, heading5, heading6]);
 
 
 /**
@@ -104,7 +106,9 @@ function numberHeadings() {
  *                               numHeading1,
  *                               numHeading2,
  *                               numHeading3,
- *                               numHeading4
+ *                               numHeading4,
+ *                               numHeading5,
+ *                               numHeading6
  *                               }
  */
 function getHeadings() {
@@ -117,6 +121,8 @@ function getHeadings() {
   var numHeading2 = 0;
   var numHeading3 = 0;
   var numHeading4 = 0;
+  var numHeading5 = 0;
+  var numHeading6 = 0;
 
   while (searchResult = ps.findElement(searchType, searchResult)) {
     var par = searchResult.getElement().asParagraph();
@@ -131,27 +137,46 @@ function getHeadings() {
         numHeading2 = 0;
         numHeading3 = 0;
         numHeading4 = 0;
+        numHeading5 = 0;
+        numHeading6 = 0;
       }
 
       if (h == heading2) {
         numHeading2++;
         numHeading3 = 0;
         numHeading4 = 0;
+        numHeading5 = 0;
+        numHeading6 = 0;
       }
 
       if (h == heading3) {
         numHeading3++;
         numHeading4 = 0;
+        numHeading5 = 0;
+        numHeading6 = 0;
       }
 
       if (h == heading4) {
         numHeading4++;
+        numHeading5 = 0;
+        numHeading6 = 0;
+      }
+
+      if (h == heading5) {
+        numHeading5++;
+        numHeading6 = 0;
+      }
+
+      if (h == heading6) {
+        numHeading6++;
       }
 
       parObj.heading1 = numHeading1;
       parObj.heading2 = numHeading2;
       parObj.heading3 = numHeading3;
       parObj.heading4 = numHeading4;
+      parObj.heading5 = numHeading5;
+      parObj.heading6 = numHeading6;
 
       results.push(parObj);
     }
@@ -183,6 +208,14 @@ function getNumberStr(parObj) {
   if (parObj.heading4 != 0) {
     result += '.' + parObj.heading4;
   }
+
+  if (parObj.heading5 != 0) {
+    result += '.' + parObj.heading5;
+  }
+
+  if (parObj.heading6 != 0) {
+    result += '.' + parObj.heading6;
+  }  
 
   return result + ' ';
 }
